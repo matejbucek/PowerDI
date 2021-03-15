@@ -1,0 +1,15 @@
+{
+	"autoload" : {
+		"psr-4" : {
+			"SimpleFW\\" : "src"
+		}
+	},
+	"name" : "matejbucek/simplefw",
+	"require" : {
+		"php" : ">=7.4",
+		"psr/container": "2.0.x-dev",
+		"latte/latte": "3.0.x-dev"
+	},
+	"description" : "Simple framework",
+	"minimum-stability" : "dev"
+}
