@@ -14,7 +14,7 @@ class HttpRequest
     }
     
     public static function createFromGlobas() : HttpRequest{
-        return new HttpRequest($_SERVER["REQUEST_URI"], $_SERVER['REQUEST_METHOD'], $_REQUEST);
+        return new HttpRequest(strtok($_SERVER["REQUEST_URI"], '?'), $_SERVER['REQUEST_METHOD'], $_REQUEST);
     }
     
     public function getPath(){
