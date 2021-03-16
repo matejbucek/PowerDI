@@ -7,6 +7,10 @@ This framework supports:
 3. Firewall
 4. Simple DB Connector
 
+---
+
+### Functionalities
+
 1. Dependency Injection
 
 We make use of PHP 8 Attributes, so that is one way to register Service or Controller.
@@ -81,6 +85,9 @@ services:
 
 The `EntityManager` is just a fancy name for simple Wrapper class, that contains the `PDO`.
 
+---
+### Authors:
+  * Matěj Bucek
 ---
 
 MIT License
