@@ -1,6 +1,16 @@
 # SimpleFW
 This is really simple PHP 8 framework. Thats where the name comes from.
 
+---
+
+### Simple example
+
+You can find a simple example of use [here](https://github.com/matejbucek/SimpleApp).
+
+---
+
+### About
+
 This framework supports: 
 1. Dependency Injection
 2. MVC with Latte
