@@ -65,7 +65,7 @@ public function getMyRoute(HttpRequest $request): HttpResponse{
   //return $this->responseWithJson($myObject);
   //return $this->redirect("/");
 }
-
+```
 `AbstractController` automatically resolves path to your template based on Configuration and your specified name.
 
 3. Firewall
