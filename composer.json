@@ -6,8 +6,7 @@
 	},
 	"name" : "matejbucek/simplefw",
 	"require" : {
-		"php" : ">=7.4",
-		"psr/container": "2.0.x-dev",
+		"php" : ">=8.1",
 		"latte/latte": "3.0.x-dev"
 	},
 	"description" : "Simple framework",
