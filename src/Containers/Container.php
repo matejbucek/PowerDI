@@ -1,7 +1,6 @@
 <?php
 namespace SimpleFW\Containers;
 
-use Psr\Container\ContainerInterface as PsrContainerInterface;
 use SimpleFW\Containers\Exceptions\ServiceNotFoundException;
 use SimpleFW\Containers\Exceptions\ParameterNotFoundException;
 use SimpleFW\Containers\Exceptions\ContainerException;
@@ -9,7 +8,7 @@ use SimpleFW\Containers\References\ServiceReference;
 use SimpleFW\Containers\References\ParameterReference;
 use SimpleFW\Annotations\Autowired;
 
-class Container implements PsrContainerInterface
+class Container
 {
 
     private $services;
