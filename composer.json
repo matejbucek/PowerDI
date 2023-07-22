@@ -9,6 +9,5 @@
 		"php" : ">=8.1",
 		"latte/latte": "3.0.x-dev"
 	},
-	"description" : "Simple framework",
-	"minimum-stability" : "dev"
+	"description" : "Simple framework"
 }
