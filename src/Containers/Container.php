@@ -32,6 +32,15 @@ class Container
         ];
     }
 
+    public function getServiceClasses() {
+        $classes = [];
+        foreach ($this->services as $service) {
+            $classes[] = $service["class"];
+        }
+
+        return $classes;
+    }
+
     public function registerParam($name, $value)
     {
         $tokens = explode(".", $name);
@@ -127,7 +136,7 @@ class Container
             } elseif ($argumentDefinition instanceof ParameterReference) {
                 $argumentParameterName = $argumentDefinition->getName();
                 $arguments[] = $this->getParameter($argumentParameterName);
-            } else {
+            } elseif(is_string($argumentDefinition)) {
                 if (preg_match("/%[\w|.]*%/", $argumentDefinition)) {
                     $arguments[] = $this->getParameter(str_replace("%", "", $argumentDefinition));
                 } else if (preg_match("/@[\w|.]*/", $argumentDefinition)) {
@@ -135,6 +144,8 @@ class Container
                 } else {
                     $arguments[] = $argumentDefinition;
                 }
+            } else {
+                $arguments[] = $argumentDefinition;
             }
         }
         return $arguments;

@@ -1,6 +1,7 @@
 <?php
 namespace SimpleFW;
 use SimpleFW\Containers\Container;
+use SimpleFW\Containers\ContainerAccessor;
 use SimpleFW\Loaders\ComponentLoader;
 use SimpleFW\Loaders\PathResolver;
 use SimpleFW\HttpBasics\HttpResponse;
@@ -36,6 +37,7 @@ abstract class AbstractKernel{
         $this->container->registerService("PathResolver", PathResolver::class, ["%app.base%", "%pathresolver.paths%"]);
         $this->container->registerService("AbstractTemplater", LatteTemplater::class, ["%pathresolver.paths%"]);
         $this->container->registerService("SessionContext", SessionContext::class);
+        $this->container->registerService("ContainerAccessor", ContainerAccessor::class, [$this->container]);
         if($this->firewallConfig["firewall"]["status"] == "on"){
             $this->container->registerParam("FirewallConfig", $this->firewallConfig);
             $this->container->registerService("Firewall", Firewall::class, [$this->firewallConfig["firewall"]["user"]["binder"], "%FirewallConfig%"]);
@@ -61,7 +63,7 @@ abstract class AbstractKernel{
         $this->loadClasses($files);
     }
     
-    private function loadClasses($files){
+    private function loadClasses($files): void {
         $controllers = ComponentLoader::filterControllers($files);
         $services = ComponentLoader::filterServices($files);
         
@@ -92,4 +94,6 @@ abstract class AbstractKernel{
             return $reflectionMethod->invoke($controller, $exception);
         }
     }
+
+
 }
