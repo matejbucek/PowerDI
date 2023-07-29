@@ -52,7 +52,8 @@ class RouteRegistry
     }
     
     private function prepareUrl($url) {
-        if(end(str_split($url)) != "/"){
+        $url_split = str_split($url);
+        if(end($url_split) != "/"){
             return ($url."/");
         }
         return $url;

@@ -70,7 +70,9 @@ class ComponentLoader {
         if (isset($instance) && $instance->getName() !== NULL) {
             return $instance->getName();
         }
-        return end(explode("\\", $class));
+
+        $name = explode("\\", $class);
+        return end($name);
     }
 
     public static function resolveServiceArgs($class) {

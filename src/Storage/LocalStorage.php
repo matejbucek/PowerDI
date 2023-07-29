@@ -12,7 +12,9 @@ class LocalStorage implements Storage {
 
     public function __construct(string $appBase, string $path) {
         $this->path = $appBase . $path;
-        $this->data = json_decode(file_get_contents($this->path));
+        $this->data = json_decode(file_get_contents($this->path), true);
+        if($this->data == null)
+            $this->data = json_decode("{}", true);
     }
 
     public function __destruct() {
@@ -24,18 +26,18 @@ class LocalStorage implements Storage {
     }
 
     public function has(string $property): bool {
-        return isset($this->data->$property);
+        return isset($this->data[$property]);
     }
 
     public function get(string $property) {
-        return $this->data->$property;
+        return $this->data[$property];
     }
 
     public function set(string $property, $value): void {
-        $this->data->$property = $value;
+        $this->data[$property] = $value;
     }
 
     public function delete(string $property): void {
-        unset($this->data->$property);
+        unset($this->data[$property]);
     }
 }
