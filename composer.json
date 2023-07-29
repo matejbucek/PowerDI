@@ -7,7 +7,8 @@
 	"name" : "matejbucek/simplefw",
 	"require" : {
 		"php" : ">=8.1",
-		"latte/latte": "@stable"
+		"latte/latte": "@stable",
+		"monolog/monolog": "@stable"
 	},
 	"description" : "Simple framework"
 }
