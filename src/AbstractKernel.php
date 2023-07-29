@@ -95,5 +95,8 @@ abstract class AbstractKernel{
         }
     }
 
-
+    public function schedule(): void {
+        $scheduler = $this->container->get("Scheduler");
+        $scheduler->schedule();
+    }
 }

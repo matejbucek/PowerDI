@@ -12,4 +12,8 @@ class ContainerAccessor {
     public function getServiceClasses(): array {
         return $this->container->getServiceClasses();
     }
+
+    public function getService(string $id) {
+        return $this->container->get($id);
+    }
 }

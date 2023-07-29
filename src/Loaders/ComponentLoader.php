@@ -1,14 +1,13 @@
 <?php
+
 namespace SimpleFW\Loaders;
 
 use SimpleFW\Annotations\Service;
 use SimpleFW\Annotations\Controller;
 
-class ComponentLoader
-{
+class ComponentLoader {
 
-    public static function recursiveScan(array $paths = [], &$files = [])
-    {
+    public static function recursiveScan(array $paths = [], &$files = []) {
         foreach ($paths as $path) {
             $scan = scandir($path);
             foreach ($scan as $found) {
@@ -27,8 +26,7 @@ class ComponentLoader
         return $files;
     }
 
-    public static function filter(array $files, $class)
-    {
+    public static function filter(array $files, $class) {
         $filtered = [];
         foreach ($files as $file) {
             $reflectionClass = new \ReflectionClass($file);
@@ -39,18 +37,27 @@ class ComponentLoader
         return $filtered;
     }
 
-    public static function filterControllers(array $files)
-    {
+    public static function filterMethods(string $class, $attribute) {
+        $reflectionClass = new \ReflectionClass($class);
+        $methods = [];
+        foreach ($reflectionClass->getMethods() as $method) {
+            if(count($method->getAttributes($attribute)) > 0) {
+                $methods[] = $method;
+            }
+        }
+
+        return $methods;
+    }
+
+    public static function filterControllers(array $files) {
         return ComponentLoader::filter($files, Controller::class);
     }
 
-    public static function filterServices(array $files)
-    {
+    public static function filterServices(array $files) {
         return ComponentLoader::filter($files, Service::class);
     }
 
-    public static function resolveServiceName($class)
-    {
+    public static function resolveServiceName($class) {
         $reflectionClass = new \ReflectionClass($class);
         $service = $reflectionClass->getAttributes(Service::class);
         $controller = $reflectionClass->getAttributes(Controller::class);
@@ -58,16 +65,15 @@ class ComponentLoader
             $instance = $service[0]->newInstance();
         } else if (count($controller) == 1) {
             $instance = $controller[0]->newInstance();
-        }else{
-            return NULL;
         }
-        if ($instance->getName() !== NULL) {
+
+        if (isset($instance) && $instance->getName() !== NULL) {
             return $instance->getName();
         }
         return end(explode("\\", $class));
     }
-    
-    public static function resolveServiceArgs($class){
+
+    public static function resolveServiceArgs($class) {
         $reflectionClass = new \ReflectionClass($class);
         $service = $reflectionClass->getAttributes(Service::class);
         $controller = $reflectionClass->getAttributes(Controller::class);
@@ -76,7 +82,7 @@ class ComponentLoader
         } else if (count($controller) == 1) {
             $instance = $controller[0]->newInstance();
         }
-        
+
         return $instance->getArgs();
     }
 }
