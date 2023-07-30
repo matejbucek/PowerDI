@@ -24,7 +24,7 @@ class Scheduler {
             $this->storage->set("scheduler", ["last_schedule" => $this->lastSchedule]);
         } else {
             $data = $this->storage->get("scheduler");
-            $this->lastSchedule = $data->last_schedule;
+            $this->lastSchedule = $data["last_schedule"];
             $this->currentSchedule = time();
             $data->last_schedule = $this->currentSchedule;
             $this->storage->set("scheduler", $data);
