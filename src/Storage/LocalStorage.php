@@ -18,7 +18,7 @@ class LocalStorage implements Storage {
     }
 
     public function __destruct() {
-        $file = fopen($this->path, "rw+");
+        $file = fopen($this->path, "w");
         if(!$file)
             throw new CouldntOpenFileException();
         fwrite($file, json_encode($this->data));
