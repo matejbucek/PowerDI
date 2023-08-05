@@ -34,7 +34,7 @@ abstract class SqlRepository extends DataRepository {
 
     public function findAll(): array {
         $tableName = $this->table->getName();
-        return $this->getAll("SELECT * FROM $tableName;", []);
+        return $this->getAll("SELECT * FROM `$tableName`;", []);
     }
 
     public function find($id): mixed {
