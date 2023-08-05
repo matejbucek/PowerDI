@@ -49,6 +49,29 @@ class ComponentLoader {
         return $methods;
     }
 
+    public static function filterProperties(string $class, $attribute) {
+        $reflectionClass = new \ReflectionClass($class);
+        $properties = [];
+        foreach ($reflectionClass->getProperties() as $property) {
+            if(count($property->getAttributes($attribute)) > 0) {
+                $properties[] = $property;
+            }
+        }
+
+        return $properties;
+    }
+
+
+    public static function hasAttribute(\ReflectionClass | \ReflectionMethod | \ReflectionProperty $reflection, string $attribute): bool {
+        $attributes = $reflection->getAttributes($attribute);
+        return count($attributes) > 0;
+    }
+
+    public static function instantiateAttribute(\ReflectionClass | \ReflectionMethod | \ReflectionProperty $reflection, string $attribute) {
+        $attributes = $reflection->getAttributes($attribute);
+        return (count($attributes) <= 0)? null : $attributes[0]->newInstance();
+    }
+
     public static function filterControllers(array $files) {
         return ComponentLoader::filter($files, Controller::class);
     }

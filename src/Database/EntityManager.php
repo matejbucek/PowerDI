@@ -1,47 +1,44 @@
 <?php
+
 namespace SimpleFW\Database;
 
-class EntityManager
-{
-    private \PDO $pdo;
-    private string $dsn;
-    private string $username;
-    private string $password;
-    
-    public function __construct(string $dsn, string $username, string $password){
-        $this->dsn = $dsn;
-        $this->usernam = $username;
-        $this->password = $password;
-        $this->pdo = new \PDO($this->dsn, $username, $password);
-        $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+use SimpleFW\Annotations\Autowired;
+use SimpleFW\Annotations\Init;
+use SimpleFW\Containers\ContainerAccessor;
+use SimpleFW\Loaders\ComponentLoader;
+use SimpleFW\Logging\Logger;
+
+class EntityManager {
+
+    #[Autowired("%app.user.classes%")]
+    private array $classes;
+
+    #[Autowired("@ContainerAccessor")]
+    private ContainerAccessor $containerAccessor;
+    private Connector $connector;
+    private array $entities;
+
+    public function __construct(Connector $connector) {
+        $this->connector = $connector;
     }
-    
-    public function __desctruct(){
-        $this->pdo = NULL;
+
+    #[Init]
+    private function init(): void {
+        $this->loadCompatibleRepositories();
     }
-    
-    public function getPDO(): \PDO{
-        return $this->pdo;
+
+    private function loadCompatibleRepositories() {
+        $repos = ComponentLoader::filter($this->classes, Repository::class);
+        foreach ($repos as $repo) {
+            $class = new \ReflectionClass($repo);
+            $attribute = $class->getAttributes(Repository::class)[0]->newInstance();
+            if($attribute->getType() == $this->connector->getType()){
+                $this->containerAccessor->registerService(ComponentLoader::resolveServiceName($class->getName()), $class->getName(), [$this, new \ReflectionClass($attribute->getClass())]);
+            }
+        }
     }
-    
-    public function query($stmt, $option = NULL): \PDOStatement{
-        return $this->pdo->query($stmt, $option);
-    }
-    
-    public function prepare($stmt): \PDOStatement{
-        return $this->pdo->prepare($stmt);
-    }
-    
-    public function begindTransaction(){
-        return $this->pdo->beginTransaction();
-    }
-    
-    public function commit(){
-        return $this->pdo->commit();
-    }
-    
-    public function rollBack(){
-        return $this->pdo->rollBack();
+
+    public function getConnector(): Connector {
+        return $this->connector;
     }
 }
-

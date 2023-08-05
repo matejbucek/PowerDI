@@ -60,6 +60,8 @@ abstract class AbstractKernel{
             $file = str_replace("/", "\\", $file);
             $file = str_replace(".php", "", $file);
         }
+        $this->container->registerParam("app.user.classes", $files);
+
         $this->loadClasses($files);
     }
     

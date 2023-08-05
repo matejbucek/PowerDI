@@ -9,6 +9,10 @@ class ContainerAccessor {
         $this->container = $container;
     }
 
+    public function registerService(string $name, string $class, array $arguments): void {
+        $this->container->registerService($name, $class, $arguments);
+    }
+
     public function getServiceClasses(): array {
         return $this->container->getServiceClasses();
     }

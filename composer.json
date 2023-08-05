@@ -1,14 +1,16 @@
 {
-	"autoload" : {
-		"psr-4" : {
-			"SimpleFW\\" : "src"
-		}
-	},
-	"name" : "matejbucek/simplefw",
-	"require" : {
-		"php" : ">=8.1",
-		"latte/latte": "@stable",
-		"monolog/monolog": "@stable"
-	},
-	"description" : "Simple framework"
+  "autoload": {
+    "psr-4": {
+      "SimpleFW\\": "src"
+    }
+  },
+  "name": "matejbucek/simplefw",
+  "require": {
+    "php": ">=8.1",
+    "latte/latte": "@stable",
+    "monolog/monolog": "@stable",
+    "ext-yaml": "*",
+    "ext-pdo": "*"
+  },
+  "description": "Simple framework"
 }
