@@ -167,5 +167,13 @@ class Container {
             if($access) $method->setAccessible(false);
         }
     }
+
+    public function checkForInstantiation(): void {
+        foreach($this->services as $name => $service) {
+            if(isset($service["instantiate"]) && $service["instantiate"] == "always") {
+                $this->serviceStore[$name] = $this->createService($name);
+            }
+        }
+    }
 }
 

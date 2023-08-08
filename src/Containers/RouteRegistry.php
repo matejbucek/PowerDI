@@ -40,10 +40,31 @@ class RouteRegistry
         return $reflectionMethod->invoke($this->controllers[$entry->getControllerName()]->getController(), $request);
     }
     
-    private function findMatchingEntry($request): RouteEntry{
-        foreach ($this->entries as $entry){
+    private function findMatchingEntry($request): RouteEntry {
+        foreach ($this->entries as $entry) {
             if($this->prepareUrl($entry->getPath()) == $this->prepareUrl($request->getPath())){
                 if(in_array($request->getMethod(), $entry->getMethods())){
+                    return $entry;
+                }
+            } else {
+                $entryUrl = explode("/", $this->prepareUrl($entry->getPath()));
+                $requestUrl = explode("/", $this->prepareUrl($request->getPath()));
+                $matches = true;
+
+                $pathVariables = [];
+
+                if(count($entryUrl) != count($requestUrl)) continue;
+                for ($i = 0; $i < count($entryUrl); $i++) {
+                    if(preg_match("/^\{\w*\}$/", $entryUrl[$i])) {
+                        $pathVariables[substr($entryUrl[$i], 1, -1)] = $requestUrl[$i];
+                    } else if($entryUrl[$i] != $requestUrl[$i]){
+                        $matches = false;
+                        break;
+                    }
+                }
+
+                if($matches && in_array($request->getMethod(), $entry->getMethods())) {
+                    $request->setPathVariables($pathVariables);
                     return $entry;
                 }
             }

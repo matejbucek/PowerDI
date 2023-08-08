@@ -5,6 +5,8 @@ class HttpRequest {
     private $path;
     private $method;
     private $params;
+
+    private ?array $pathVariables;
     
     public function __construct($path, $method, $params = NULL){
         $this->path = $path;
@@ -30,6 +32,14 @@ class HttpRequest {
 
     public function getParam(string $name): string {
         return$this->params[$name];
+    }
+
+    public function setPathVariables(array $pathVariables): void {
+        $this->pathVariables = $pathVariables;
+    }
+
+    public function getPathVariables(): ?array {
+        return $this->pathVariables;
     }
 }
 

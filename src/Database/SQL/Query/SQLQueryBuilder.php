@@ -117,7 +117,7 @@ class SQLQueryBuilder {
         if(!empty($this->conditions)) {
             $conditions = $this->conditions();
             $query .= " WHERE {$conditions->query}";
-            $arguments = $conditions->arguments;
+            $arguments = array_merge($arguments, $conditions->arguments);
         }
 
         $query .= ";";

@@ -29,6 +29,8 @@ abstract class AbstractKernel{
         $this->container = new Container($this->dependency["services"], $this->dependency["parameters"]);
         $this->registerDefaults();
         $this->prepareClasses();
+        $this->container->checkForInstantiation();
+        $this->loadClasses($this->container->getParameter("app.user.classes"));
     }
     
     protected function registerDefaults(){
@@ -61,8 +63,6 @@ abstract class AbstractKernel{
             $file = str_replace(".php", "", $file);
         }
         $this->container->registerParam("app.user.classes", $files);
-
-        $this->loadClasses($files);
     }
     
     private function loadClasses($files): void {

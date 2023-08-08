@@ -64,8 +64,6 @@ abstract class SqlRepository extends DataRepository {
             $query = (new SQLQueryBuilder($this->class))->update($propertyMappings)->where($this->id, WhereOperators::Equal, $idValue)->build();
         }
 
-        print_r($query);
-
         $stmt = $this->entityManager->getConnector()->prepare($query->query);
         $stmt->execute($query->arguments);
     }
