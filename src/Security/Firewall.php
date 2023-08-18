@@ -1,42 +1,34 @@
 <?php
+
 namespace SimpleFW\Security;
 
 use SimpleFW\HttpBasics\Exceptions\AccessForbiddenException;
 use SimpleFW\HttpBasics\HttpRequest;
 use SimpleFW\Security\Exceptions\UserNotLoggedInException;
 
-class Firewall
-{
+class Firewall {
 
     private UserDataBinder $binder;
 
     private $config;
 
-    public function __construct(UserDataBinder $binder, $config)
-    {
+    public function __construct(UserDataBinder $binder, $config) {
         $this->binder = $binder;
         $this->config = $config;
     }
 
-    public function canAccess($request): bool
-    {
+    public function canAccess($request): bool {
         $user = $this->binder->getUser();
         return $this->resolve($request, $user);
     }
 
-    private function resolve(HttpRequest $request, ?Principal $user)
-    {
+    private function resolve(HttpRequest $request, ?Principal $user) {
         $default = NULL;
         foreach ($this->config["firewall"]["routes"] as $entry) {
-            if (isset($entry["default"]) && $entry["default"] == TRUE) {
+            if (isset($entry["default"]) && $entry["default"]) {
                 $default = $entry;
             }
 
-            // echo "<hr>";
-            // echo $request->getPath();
-            // echo ($request->getPath() == $entry["path"]) ? "Rovná": "nerovná";
-            // print_r($entry);
-            // echo "<hr>";
             if (isset($entry['path'])) {
                 if ($this->belongs($request->getPath(), $entry["path"])) {
                     return $this->entryCheck($entry, $user, $request);
@@ -51,10 +43,9 @@ class Firewall
         return $this->entryCheck($default, $user, $request);
     }
 
-    private function entryCheck($entry, $user, $request)
-    {
+    private function entryCheck($entry, $user, $request) {
         if (isset($entry["methods"])) {
-            if (! in_array($request->getMethod(), $entry["methods"]))
+            if (!in_array($request->getMethod(), $entry["methods"]))
                 throw new AccessForbiddenException();
         }
 
@@ -69,18 +60,18 @@ class Firewall
         }
 
         if (isset($entry["hasRole"])) {
-            if($user == NULL){
+            if ($user == NULL) {
                 throw new UserNotLoggedInException();
             }
             foreach ($entry["hasRole"] as $role) {
-                if (! in_array($role, $user->getRoles())) {
+                if (!in_array($role, $user->getRoles())) {
                     throw new AccessForbiddenException();
                 }
             }
         }
 
         if (isset($entry["hasAnyRole"])) {
-            if($user == NULL){
+            if ($user == NULL) {
                 throw new UserNotLoggedInException();
             }
             if (count(array_intersect($entry["hasAnyRole"], $user->getRoles())) <= 0) {
@@ -91,8 +82,7 @@ class Firewall
         return TRUE;
     }
 
-    private function belongs($path, $matcher): bool
-    {
+    private function belongs($path, $matcher): bool {
         if ($path == $matcher) {
             return TRUE;
         }
@@ -100,7 +90,7 @@ class Firewall
         if (preg_match("/.*\/\*\*/", $matcher)) {
             $pathChars = str_split($path);
             $matcherChars = str_split($matcher);
-            for ($i = 0; $i < count($pathChars); $i ++) {
+            for ($i = 0; $i < count($pathChars); $i++) {
                 if ($matcherChars[$i] == '*') {
                     return TRUE;
                 }
@@ -108,7 +98,7 @@ class Firewall
                     return FALSE;
                 }
             }
-            
+
             return TRUE;
         }
 

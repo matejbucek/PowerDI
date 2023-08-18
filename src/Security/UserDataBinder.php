@@ -1,8 +1,9 @@
 <?php
 namespace SimpleFW\Security;
 
-interface UserDataBinder
-{
-    public function getUser(): ?Principal;
+use SimpleFW\HttpBasics\HttpRequest;
+
+interface UserDataBinder {
+    public function getUser(HttpRequest $request): ?Principal;
 }
 

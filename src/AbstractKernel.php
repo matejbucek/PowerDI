@@ -7,6 +7,7 @@ use SimpleFW\Loaders\PathResolver;
 use SimpleFW\HttpBasics\HttpResponse;
 use SimpleFW\HttpBasics\HttpRequest;
 use SimpleFW\Containers\RouteRegistry;
+use SimpleFW\Logging\VoidLogger;
 use SimpleFW\Templates\LatteTemplater;
 use SimpleFW\Containers\References\ServiceReference;
 use SimpleFW\Containers\SessionContext;
@@ -44,6 +45,7 @@ abstract class AbstractKernel{
             $this->container->registerParam("FirewallConfig", $this->firewallConfig);
             $this->container->registerService("Firewall", Firewall::class, [$this->firewallConfig["firewall"]["user"]["binder"], "%FirewallConfig%"]);
         }
+        $this->container->registerService("Logger", VoidLogger::class, []);
     }
     
     protected abstract function setAppBase();

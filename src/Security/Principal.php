@@ -1,22 +1,28 @@
 <?php
+
 namespace SimpleFW\Security;
 
-class Principal
-{
+class Principal {
     protected string $name;
     protected array $roles;
-    
-    public function __construct(string $name, array $roles){
+    protected array $data;
+
+    public function __construct(string $name, array $roles, array $data) {
         $this->name = $name;
         $this->roles = $roles;
+        $this->data = $data;
     }
-    
-    public function getName(){
+
+    public function getName() {
         return $this->name;
     }
-    
-    public function getRoles(){
+
+    public function getRoles() {
         return $this->roles;
+    }
+
+    public function getData() {
+        return $this->data;
     }
 }
 
