@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Annotations;
+namespace PowerDI\Core;
 
 #[\Attribute(\Attribute::TARGET_METHOD)]
 class Init {

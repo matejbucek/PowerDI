@@ -1,12 +1,11 @@
 <?php
 
-namespace SimpleFW\Database;
+namespace PowerDI\Database;
 
-use SimpleFW\Annotations\Autowired;
-use SimpleFW\Annotations\Init;
-use SimpleFW\Containers\ContainerAccessor;
-use SimpleFW\Loaders\ComponentLoader;
-use SimpleFW\Logging\Logger;
+use PowerDI\Core\Autowired;
+use PowerDI\Core\ContainerAccessor;
+use PowerDI\Core\Init;
+use PowerDI\Loaders\ComponentLoader;
 
 class EntityManager {
 

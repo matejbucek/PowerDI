@@ -1,9 +1,7 @@
 <?php
-namespace SimpleFW\Containers;
+namespace PowerDI\Core;
 
-use SimpleFW\Annotations\Route;
-use SimpleFW\HttpBasics\Exceptions\PageNotFoundException;
-use SimpleFW\HttpBasics\Exceptions\MethodNotSupportedException;
+use PowerDI\HttpBasics\Exceptions\PageNotFoundException;
 
 class RouteRegistry
 {

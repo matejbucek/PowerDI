@@ -1,12 +1,12 @@
 <?php
 
-namespace SimpleFW\Database\DTO;
+namespace PowerDI\Database\DTO;
 
 #[\Attribute(\Attribute::TARGET_CLASS)]
 class DTO {
-    private string $class;
+    private ?string $class;
 
-    public function __construct(string $class) {
+    public function __construct(?string $class = null) {
         $this->class = $class;
     }
 

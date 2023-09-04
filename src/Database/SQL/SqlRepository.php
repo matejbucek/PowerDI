@@ -1,16 +1,16 @@
 <?php
 
-namespace SimpleFW\Database\SQL;
+namespace PowerDI\Database\SQL;
 
-use SimpleFW\Database\DatabaseException;
-use SimpleFW\Database\DataRepository;
-use SimpleFW\Database\Entity;
-use SimpleFW\Database\EntityManager;
-use SimpleFW\Database\Helpers;
-use SimpleFW\Database\SQL\Query\SQLQueryBuilder;
-use SimpleFW\Database\SQL\Query\WhereOperators;
-use SimpleFW\Database\Transient;
-use SimpleFW\Loaders\ComponentLoader;
+use PowerDI\Database\DatabaseException;
+use PowerDI\Database\DataRepository;
+use PowerDI\Database\Entity;
+use PowerDI\Database\EntityManager;
+use PowerDI\Database\Helpers;
+use PowerDI\Database\SQL\Query\SQLQueryBuilder;
+use PowerDI\Database\SQL\Query\WhereOperators;
+use PowerDI\Database\Transient;
+use PowerDI\Loaders\ComponentLoader;
 
 abstract class SqlRepository extends DataRepository {
     protected Table $table;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Profiling;
+namespace PowerDI\Profiling;
 
 class Profiler {
     private $calledFunctions;

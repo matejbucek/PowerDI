@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Security\Exceptions;
+namespace PowerDI\Security\Exceptions;
 
 class JwtBinderException extends \Exception {
 

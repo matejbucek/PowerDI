@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Logging;
+namespace PowerDI\Logging;
 
 class VoidLogger implements Logger {
 

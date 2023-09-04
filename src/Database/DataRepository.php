@@ -1,9 +1,8 @@
 <?php
 
-namespace SimpleFW\Database;
+namespace PowerDI\Database;
 
-use SimpleFW\Annotations\Autowired;
-use SimpleFW\Database\SQL\Column;
+use PowerDI\Database\SQL\Column;
 
 abstract class DataRepository {
     protected EntityManager $entityManager;

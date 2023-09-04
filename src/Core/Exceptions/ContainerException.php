@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\Containers\Exceptions;
+namespace PowerDI\Core\Exceptions;
 class ContainerException extends \Exception
 {
 }

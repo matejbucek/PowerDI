@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\IO;
+namespace PowerDI\IO;
 
 abstract class FileLoader {
 

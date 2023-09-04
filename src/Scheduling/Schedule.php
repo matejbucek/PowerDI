@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Annotations;
+namespace PowerDI\Scheduling;
 
 #[\Attribute(\Attribute::TARGET_METHOD)]
 class Schedule {

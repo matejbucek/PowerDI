@@ -1,10 +1,10 @@
 {
   "autoload": {
     "psr-4": {
-      "SimpleFW\\": "src"
+      "PowerDI\\": "src"
     }
   },
-  "name": "matejbucek/simplefw",
+  "name": "matejbucek/powerdi",
   "require": {
     "php": ">=8.1",
     "latte/latte": "@stable",

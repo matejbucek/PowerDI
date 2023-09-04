@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Database\SQL;
+namespace PowerDI\Database\SQL;
 
 class ColumnType {
     public static string $STRING = "STRING";

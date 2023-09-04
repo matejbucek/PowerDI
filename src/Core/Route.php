@@ -1,7 +1,7 @@
 <?php
-namespace SimpleFW\Annotations;
+namespace PowerDI\Core;
 
-use SimpleFW\HttpBasics\HttpMethod;
+use PowerDI\HttpBasics\HttpMethod;
 
 #[\Attribute]
 class Route

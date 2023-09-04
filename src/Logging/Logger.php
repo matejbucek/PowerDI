@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Logging;
+namespace PowerDI\Logging;
 
 interface Logger {
     public function emergency(string $text);

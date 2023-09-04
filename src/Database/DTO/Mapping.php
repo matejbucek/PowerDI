@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Database\DTO;
+namespace PowerDI\Database\DTO;
 
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Mapping {

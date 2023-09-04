@@ -1,10 +1,10 @@
 <?php
 
-namespace SimpleFW\Security;
+namespace PowerDI\Security;
 
-use SimpleFW\HttpBasics\Exceptions\AccessForbiddenException;
-use SimpleFW\HttpBasics\HttpRequest;
-use SimpleFW\Security\Exceptions\UserNotLoggedInException;
+use PowerDI\HttpBasics\Exceptions\AccessForbiddenException;
+use PowerDI\HttpBasics\HttpRequest;
+use PowerDI\Security\Exceptions\UserNotLoggedInException;
 
 class Firewall {
 

@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\Templates;
+namespace PowerDI\Templates;
 
 abstract class AbstractTemplater
 {

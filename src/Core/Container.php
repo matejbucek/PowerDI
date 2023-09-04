@@ -1,15 +1,13 @@
 <?php
 
-namespace SimpleFW\Containers;
+namespace PowerDI\Core;
 
-use SimpleFW\Annotations\Init;
-use SimpleFW\Containers\Exceptions\ServiceNotFoundException;
-use SimpleFW\Containers\Exceptions\ParameterNotFoundException;
-use SimpleFW\Containers\Exceptions\ContainerException;
-use SimpleFW\Containers\References\ServiceReference;
-use SimpleFW\Containers\References\ParameterReference;
-use SimpleFW\Annotations\Autowired;
-use SimpleFW\Loaders\ComponentLoader;
+use PowerDI\Core\Exceptions\ContainerException;
+use PowerDI\Core\Exceptions\ParameterNotFoundException;
+use PowerDI\Core\Exceptions\ServiceNotFoundException;
+use PowerDI\Core\References\ParameterReference;
+use PowerDI\Core\References\ServiceReference;
+use PowerDI\Loaders\ComponentLoader;
 
 class Container {
 

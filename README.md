@@ -1,4 +1,4 @@
-# SimpleFW
+# PowerDI
 This is really simple PHP 8 framework. Thats where the name comes from.
 
 ---
@@ -89,7 +89,7 @@ parameters:
       password: "MySecurePassword123?"
 services:
   EntityManager:
-    class: SimpleFW\Database\EntityManager
+    class: PowerDI\Database\EntityManager
     arguments: ["%db.default.dsn%", "%db.default.username%", "%db.default.password%"]
 ```
 

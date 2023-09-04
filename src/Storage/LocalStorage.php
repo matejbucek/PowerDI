@@ -1,9 +1,6 @@
 <?php
 
-namespace SimpleFW\Storage;
-
-use SimpleFW\Annotations\Autowired;
-use SimpleFW\Loaders\PathResolver;
+namespace PowerDI\Storage;
 
 class LocalStorage implements Storage {
 

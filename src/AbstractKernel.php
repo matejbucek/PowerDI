@@ -1,18 +1,18 @@
 <?php
-namespace SimpleFW;
-use SimpleFW\Containers\Container;
-use SimpleFW\Containers\ContainerAccessor;
-use SimpleFW\Loaders\ComponentLoader;
-use SimpleFW\Loaders\PathResolver;
-use SimpleFW\HttpBasics\HttpResponse;
-use SimpleFW\HttpBasics\HttpRequest;
-use SimpleFW\Containers\RouteRegistry;
-use SimpleFW\Logging\VoidLogger;
-use SimpleFW\Templates\LatteTemplater;
-use SimpleFW\Containers\References\ServiceReference;
-use SimpleFW\Containers\SessionContext;
-use SimpleFW\Security\Firewall;
-use SimpleFW\HttpBasics\Exceptions\AccessForbiddenException;
+namespace PowerDI;
+use PowerDI\Core\Container;
+use PowerDI\Core\ContainerAccessor;
+use PowerDI\Loaders\ComponentLoader;
+use PowerDI\Loaders\PathResolver;
+use PowerDI\HttpBasics\HttpResponse;
+use PowerDI\HttpBasics\HttpRequest;
+use PowerDI\Core\RouteRegistry;
+use PowerDI\Logging\VoidLogger;
+use PowerDI\Templates\LatteTemplater;
+use PowerDI\Core\References\ServiceReference;
+use PowerDI\Core\SessionContext;
+use PowerDI\Security\Firewall;
+use PowerDI\HttpBasics\Exceptions\AccessForbiddenException;
 
 abstract class AbstractKernel{
     protected $appBase;
@@ -85,6 +85,7 @@ abstract class AbstractKernel{
     }
     
     public function handle(HttpRequest $request): HttpResponse{
+        $this->container->registerParam("app.request", $request);
         try{
             if($this->firewallConfig["firewall"]["status"] == "on"){
                 $firewall = $this->container->get("Firewall");

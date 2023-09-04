@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Containers;
+namespace PowerDI\Core;
 
 class ContainerAccessor {
     private Container $container;

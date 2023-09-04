@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\Database;
+namespace PowerDI\Database;
 
 class MySQLConnector implements TransactionalConnector {
     private \PDO $pdo;
@@ -12,6 +12,7 @@ class MySQLConnector implements TransactionalConnector {
         $this->usernam = $username;
         $this->password = $password;
         $this->pdo = new \PDO($this->dsn, $username, $password);
+        //if($this->pdo->errorCode()) throw new \Exception("");
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
     

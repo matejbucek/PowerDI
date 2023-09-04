@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\Containers\References;
+namespace PowerDI\Core\References;
 
 abstract class AbstractReference
 {

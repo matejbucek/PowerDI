@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\Containers\Exceptions;
+namespace PowerDI\Core\Exceptions;
 
 class ParameterNotFoundException extends \Exception
 {

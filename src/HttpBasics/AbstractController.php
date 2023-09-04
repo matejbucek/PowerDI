@@ -1,8 +1,8 @@
 <?php
-namespace SimpleFW\HttpBasics;
-use SimpleFW\Templates\AbstractTemplater;
-use SimpleFW\Loaders\PathResolver;
-use SimpleFW\Annotations\Autowired;
+namespace PowerDI\HttpBasics;
+use PowerDI\Core\Autowired;
+use PowerDI\Loaders\PathResolver;
+use PowerDI\Templates\AbstractTemplater;
 
 abstract class AbstractController{
     private $templater;

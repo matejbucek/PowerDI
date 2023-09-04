@@ -1,8 +1,6 @@
 <?php
 
-namespace SimpleFW\Database;
-
-use SimpleFW\Annotations\Service;
+namespace PowerDI\Database;
 
 #[\Attribute(\Attribute::TARGET_CLASS)]
 class Repository {

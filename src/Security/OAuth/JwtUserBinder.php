@@ -1,13 +1,13 @@
 <?php
 
-namespace SimpleFW\Security\OAuth;
+namespace PowerDI\Security\OAuth;
 
-use SimpleFW\Annotations\Autowired;
-use SimpleFW\HttpBasics\HttpRequest;
-use SimpleFW\Logging\Logger;
-use SimpleFW\Security\Exceptions\JwtBinderException;
-use SimpleFW\Security\Principal;
-use SimpleFW\Security\UserDataBinder;
+use PowerDI\Core\Autowired;
+use PowerDI\HttpBasics\HttpRequest;
+use PowerDI\Logging\Logger;
+use PowerDI\Security\Exceptions\JwtBinderException;
+use PowerDI\Security\Principal;
+use PowerDI\Security\UserDataBinder;
 
 class JwtUserBinder implements UserDataBinder {
     private string $authServerUrl;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Database\SQL\Query;
+namespace PowerDI\Database\SQL\Query;
 
 class Query {
     public readonly string $query;

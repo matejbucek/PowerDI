@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\Security;
+namespace PowerDI\Security;
 
 interface Role
 {

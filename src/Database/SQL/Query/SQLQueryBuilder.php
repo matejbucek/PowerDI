@@ -1,10 +1,10 @@
 <?php
 
-namespace SimpleFW\Database\SQL\Query;
+namespace PowerDI\Database\SQL\Query;
 
-use SimpleFW\Database\DatabaseException;
-use SimpleFW\Database\SQL\Table;
-use SimpleFW\Loaders\ComponentLoader;
+use PowerDI\Database\DatabaseException;
+use PowerDI\Database\SQL\Table;
+use PowerDI\Loaders\ComponentLoader;
 
 class SQLQueryBuilder {
     private \ReflectionClass $class;

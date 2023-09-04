@@ -1,11 +1,10 @@
 <?php
 
-namespace SimpleFW\Scheduling;
+namespace PowerDI\Scheduling;
 
-use SimpleFW\Annotations\Schedule;
-use SimpleFW\Containers\ContainerAccessor;
-use SimpleFW\Loaders\ComponentLoader;
-use SimpleFW\Storage\Storage;
+use PowerDI\Core\ContainerAccessor;
+use PowerDI\Loaders\ComponentLoader;
+use PowerDI\Storage\Storage;
 
 class Scheduler {
 

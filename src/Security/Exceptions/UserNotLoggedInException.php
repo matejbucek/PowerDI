@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\Security\Exceptions;
+namespace PowerDI\Security\Exceptions;
 
 class UserNotLoggedInException extends \Exception
 {

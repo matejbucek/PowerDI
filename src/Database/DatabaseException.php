@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Database;
+namespace PowerDI\Database;
 
 class DatabaseException extends \Exception {
 

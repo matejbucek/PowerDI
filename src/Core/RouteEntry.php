@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\Containers;
+namespace PowerDI\Core;
 
 class RouteEntry
 {

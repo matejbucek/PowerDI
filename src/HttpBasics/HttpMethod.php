@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\HttpBasics;
+namespace PowerDI\HttpBasics;
 
 abstract class HttpMethod
 {

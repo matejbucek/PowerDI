@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\Annotations;
+namespace PowerDI\Core;
 
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Autowired

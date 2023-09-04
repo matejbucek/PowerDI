@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Database;
+namespace PowerDI\Database;
 
 #[\Attribute(\Attribute::TARGET_PROPERTY)]
 class Transient {

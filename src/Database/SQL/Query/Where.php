@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Database\SQL\Query;
+namespace PowerDI\Database\SQL\Query;
 
 class Where {
     public readonly string $column;

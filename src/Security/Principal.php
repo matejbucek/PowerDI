@@ -1,13 +1,13 @@
 <?php
 
-namespace SimpleFW\Security;
+namespace PowerDI\Security;
 
 class Principal {
     protected string $name;
     protected array $roles;
     protected array $data;
 
-    public function __construct(string $name, array $roles, array $data) {
+    public function __construct(string $name, array $roles, array $data = []) {
         $this->name = $name;
         $this->roles = $roles;
         $this->data = $data;

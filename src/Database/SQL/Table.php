@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Database\SQL;
+namespace PowerDI\Database\SQL;
 
 #[\Attribute(\Attribute::TARGET_CLASS)]
 class Table {

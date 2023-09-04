@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\HttpBasics\Exceptions;
+namespace PowerDI\HttpBasics\Exceptions;
 
 class AccessForbiddenException extends \Exception
 {

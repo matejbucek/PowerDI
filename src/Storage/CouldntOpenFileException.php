@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Storage;
+namespace PowerDI\Storage;
 
 class CouldntOpenFileException extends \Exception {
 

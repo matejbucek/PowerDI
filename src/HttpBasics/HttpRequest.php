@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\HttpBasics;
+namespace PowerDI\HttpBasics;
 
 class HttpRequest {
     private $path;
@@ -32,8 +32,8 @@ class HttpRequest {
         return $this->params;
     }
 
-    public function getParam(string $name): string {
-        return$this->params[$name];
+    public function getParam(string $name) {
+        return ($this->params[$name] == "null")? null : $this->params[$name];
     }
 
     public function setPathVariables(array $pathVariables): void {

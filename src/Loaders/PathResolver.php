@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\Loaders;
+namespace PowerDI\Loaders;
 
 class PathResolver
 {

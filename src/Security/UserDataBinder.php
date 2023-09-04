@@ -1,9 +1,9 @@
 <?php
-namespace SimpleFW\Security;
+namespace PowerDI\Security;
 
-use SimpleFW\HttpBasics\HttpRequest;
+use PowerDI\HttpBasics\HttpRequest;
 
 interface UserDataBinder {
-    public function getUser(HttpRequest $request): ?Principal;
+    public function getUser(): ?Principal;
 }
 

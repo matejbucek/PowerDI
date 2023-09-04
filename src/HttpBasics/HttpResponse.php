@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\HttpBasics;
+namespace PowerDI\HttpBasics;
 
 class HttpResponse {
 

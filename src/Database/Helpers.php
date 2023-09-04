@@ -1,9 +1,9 @@
 <?php
 
-namespace SimpleFW\Database;
+namespace PowerDI\Database;
 
-use SimpleFW\Database\SQL\Column;
-use SimpleFW\Loaders\ComponentLoader;
+use PowerDI\Database\SQL\Column;
+use PowerDI\Loaders\ComponentLoader;
 
 class Helpers {
 

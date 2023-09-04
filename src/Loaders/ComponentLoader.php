@@ -1,9 +1,9 @@
 <?php
 
-namespace SimpleFW\Loaders;
+namespace PowerDI\Loaders;
 
-use SimpleFW\Annotations\Service;
-use SimpleFW\Annotations\Controller;
+use PowerDI\Core\Controller;
+use PowerDI\Core\Service;
 
 class ComponentLoader {
 

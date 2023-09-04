@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Storage;
+namespace PowerDI\Storage;
 
 interface Storage {
     public function has(string $property): bool;

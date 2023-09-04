@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleFW\Logging;
+namespace PowerDI\Logging;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Level;

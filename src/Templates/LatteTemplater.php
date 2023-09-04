@@ -1,5 +1,5 @@
 <?php
-namespace SimpleFW\Templates;
+namespace PowerDI\Templates;
 use Latte\Engine;
 
 class LatteTemplater extends AbstractTemplater
