@@ -16,13 +16,16 @@ class JwtUserBinder implements UserDataBinder {
     #[Autowired("@Logger")]
     private Logger $logger;
 
+    #[Autowired("%app.request%")]
+    private HttpRequest $request;
+
     public function __construct(string $authServerUrl, string $header = "Authorization") {
         $this->authServerUrl = $authServerUrl;
         $this->header = $header;
     }
 
-    public function getUser(HttpRequest $request): ?Principal {
-        $authHeader = $request->getHeader($this->header);
+    public function getUser(): ?Principal {
+        $authHeader = $this->request->getHeader($this->header);
         if ($authHeader == null)
             return null;
 

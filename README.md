@@ -16,6 +16,14 @@ This framework supports:
 2. MVC with Latte
 3. Firewall
 4. Simple DB Connector
+5. Logging
+6. Storage
+
+### TODO
+
+- Log in more places
+- Reimplement Routing
+- Reimplement Firewall
 
 ---
 

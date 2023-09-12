@@ -30,7 +30,12 @@ abstract class AbstractKernel{
         $this->container = new Container($this->dependency["services"], $this->dependency["parameters"]);
         $this->registerDefaults();
         $this->prepareClasses();
-        $this->container->checkForInstantiation();
+        try {
+            $this->container->checkForInstantiation();
+        } catch (\Exception $exception) {
+            $this->container->get("Logger")->error("Exception thrown in CheckForInstantiation phase: {$exception->getMessage()}");
+            die("Check the log");
+        }
         $this->loadClasses($this->container->getParameter("app.user.classes"));
     }
     
@@ -45,7 +50,8 @@ abstract class AbstractKernel{
             $this->container->registerParam("FirewallConfig", $this->firewallConfig);
             $this->container->registerService("Firewall", Firewall::class, [$this->firewallConfig["firewall"]["user"]["binder"], "%FirewallConfig%"]);
         }
-        $this->container->registerService("Logger", VoidLogger::class, []);
+        if(!$this->container->has("Logger"))
+            $this->container->registerService("Logger", VoidLogger::class, []);
     }
     
     protected abstract function setAppBase();
