@@ -44,6 +44,10 @@ class HttpRequest {
         return $this->pathVariables;
     }
 
+    public function getPathVariable(string $name) {
+        return ($this->pathVariables[$name] == "null")? null : $this->pathVariables[$name];
+    }
+
     public function getHeaders(): ?array {
         return $this->headers;
     }

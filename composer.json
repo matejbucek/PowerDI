@@ -9,6 +9,7 @@
     "php": ">=8.1",
     "latte/latte": "@stable",
     "monolog/monolog": "@stable",
+    "phpmailer/phpmailer": "^6.9.1",
     "ext-yaml": "*",
     "ext-pdo": "*"
   },

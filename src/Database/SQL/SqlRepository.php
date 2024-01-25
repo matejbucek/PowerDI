@@ -2,6 +2,7 @@
 
 namespace PowerDI\Database\SQL;
 
+use PowerDI\Database\Converter;
 use PowerDI\Database\DatabaseException;
 use PowerDI\Database\DataRepository;
 use PowerDI\Database\Entity;
@@ -53,7 +54,15 @@ abstract class SqlRepository extends DataRepository {
             if (ComponentLoader::hasAttribute($property, ID::class)
                 || ComponentLoader::hasAttribute($property, Transient::class))
                 continue;
-            $propertyMappings[Helpers::columnNameOr($property, $property->name)] = $property->getValue($entity);
+
+            if(ComponentLoader::hasAttribute($property, Converter::class)) {
+                $converter = ComponentLoader::instantiateAttribute($property, Converter::class);
+                $columnConverterReflection = new \ReflectionClass($converter->getClass());
+                $columnConverter = $columnConverterReflection->newInstance();
+                $propertyMappings[Helpers::columnNameOr($property, $property->name)] = $columnConverter->objectToDB($property->getValue($entity));
+            } else {
+                $propertyMappings[Helpers::columnNameOr($property, $property->name)] = $property->getValue($entity);
+            }
         }
 
         $idValue = $this->class->getProperty($this->id)->getValue($entity);
