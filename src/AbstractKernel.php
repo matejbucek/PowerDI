@@ -2,6 +2,7 @@
 namespace PowerDI;
 use PowerDI\Core\Container;
 use PowerDI\Core\ContainerAccessor;
+use PowerDI\Core\Router;
 use PowerDI\Loaders\ComponentLoader;
 use PowerDI\Loaders\PathResolver;
 use PowerDI\HttpBasics\HttpResponse;
@@ -46,6 +47,7 @@ abstract class AbstractKernel{
         $this->container->registerService("AbstractTemplater", LatteTemplater::class, ["%pathresolver.paths%"]);
         $this->container->registerService("SessionContext", SessionContext::class);
         $this->container->registerService("ContainerAccessor", ContainerAccessor::class, [$this->container]);
+        $this->container->registerService("Router", Router::class, [$this->routeRegistry]);
         if($this->firewallConfig["firewall"]["status"] == "on"){
             $this->container->registerParam("FirewallConfig", $this->firewallConfig);
             $this->container->registerService("Firewall", Firewall::class, [$this->firewallConfig["firewall"]["user"]["binder"], "%FirewallConfig%"]);
