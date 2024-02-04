@@ -6,18 +6,19 @@ class HttpRequest {
     private $method;
     private $params;
     private ?array $pathVariables;
-
     private ?array $headers;
+    private ?array $files;
 
-    public function __construct($path, $method, $params = NULL, array $headers = null){
+    public function __construct($path, $method, $params = NULL, array $headers = null, array $files){
         $this->path = $path;
         $this->method = $method;
         $this->params = $params;
         $this->headers = $headers;
+        $this->files = $files;
     }
 
     public static function createFromGlobas() : HttpRequest{
-        return new HttpRequest(strtok($_SERVER["REQUEST_URI"], '?'), $_SERVER['REQUEST_METHOD'], $_REQUEST, getallheaders());
+        return new HttpRequest(strtok($_SERVER["REQUEST_URI"], '?'), $_SERVER['REQUEST_METHOD'], $_REQUEST, getallheaders(), File::createFromGlobals());
     }
 
     public function getPath() {
@@ -54,6 +55,14 @@ class HttpRequest {
 
     public function getHeader(string $name): mixed {
         return $this->headers[$name];
+    }
+
+    public function getFile(string $name): ?File {
+        return ($this->files[$name] == "null")? null : $this->files[$name];
+    }
+
+    public function getFiles(): array {
+        return $this->files;
     }
 }
 

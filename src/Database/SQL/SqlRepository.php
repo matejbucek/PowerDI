@@ -8,6 +8,7 @@ use PowerDI\Database\DataRepository;
 use PowerDI\Database\Entity;
 use PowerDI\Database\EntityManager;
 use PowerDI\Database\Helpers;
+use PowerDI\Database\MySQLConnector;
 use PowerDI\Database\SQL\Query\SQLQueryBuilder;
 use PowerDI\Database\SQL\Query\WhereOperators;
 use PowerDI\Database\Transient;
@@ -31,6 +32,18 @@ abstract class SqlRepository extends DataRepository {
         if (count($idColumn) > 0) {
             $this->id = $idColumn[0]->newInstance()->getName();
         }
+    }
+
+    public function beginTransaction() {
+        $this->entityManager->getConnector()->begin();
+    }
+
+    public function commitTransaction() {
+        $this->entityManager->getConnector()->commit();
+    }
+
+    public function rollbackTransaction() {
+        $this->entityManager->getConnector()->rollBack();
     }
 
     public function findAll(): array {
