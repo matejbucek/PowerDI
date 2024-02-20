@@ -2,6 +2,7 @@
 
 namespace PowerDI\Security;
 
+use PowerDI\Core\RouteRegistry;
 use PowerDI\HttpBasics\Exceptions\AccessForbiddenException;
 use PowerDI\HttpBasics\HttpRequest;
 use PowerDI\Security\Exceptions\UserNotLoggedInException;
@@ -87,22 +88,11 @@ class Firewall {
             return TRUE;
         }
 
-        if (preg_match("/.*\/\*\*/", $matcher)) {
-            $pathChars = str_split($path);
-            $matcherChars = str_split($matcher);
-            for ($i = 0; $i < count($pathChars); $i++) {
-                if ($matcherChars[$i] == '*') {
-                    return TRUE;
-                }
-                if ($pathChars[$i] !== $matcherChars[$i]) {
-                    return FALSE;
-                }
-            }
+        $requestUrl = array_filter(explode("/", RouteRegistry::prepareUrl($path)));
+        $entryUrl = array_filter(explode("/", RouteRegistry::prepareUrl($matcher)));
+        $pathVariables = [];
 
-            return TRUE;
-        }
-
-        return FALSE;
+        return RouteRegistry::pathMatches($entryUrl, $requestUrl, $pathVariables);
     }
 }
 

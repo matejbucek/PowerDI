@@ -3,15 +3,15 @@ namespace PowerDI\HttpBasics;
 
 class HttpRequest {
     private $path;
-    private $method;
+    private HttpMethod $method;
     private $params;
     private ?array $pathVariables;
     private ?array $headers;
     private ?array $files;
 
-    public function __construct($path, $method, $params = NULL, array $headers = null, array $files){
+    public function __construct($path, string $method, $params = NULL, array $headers = null, array $files){
         $this->path = $path;
-        $this->method = $method;
+        $this->method = HttpMethod::tryFrom($method);
         $this->params = $params;
         $this->headers = $headers;
         $this->files = $files;
@@ -25,7 +25,7 @@ class HttpRequest {
         return $this->path;
     }
     
-    public function getMethod() {
+    public function getMethod(): HttpMethod {
         return $this->method;
     }
     

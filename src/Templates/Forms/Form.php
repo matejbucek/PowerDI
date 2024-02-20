@@ -2,6 +2,7 @@
 
 namespace PowerDI\Templates\Forms;
 
+use PowerDI\Database\Convertable;
 use PowerDI\HttpBasics\HttpRequest;
 
 class Form implements \ArrayAccess {
@@ -36,9 +37,33 @@ class Form implements \ArrayAccess {
         unset($this->controls[$offset]);
     }
 
-    public function fillFromRequest(HttpRequest $request) {
-        foreach($this->controls as $name => $control) {
-
+    public function fillFromRequest(HttpRequest $request): void {
+        foreach($this->controls as $name => &$control) {
+            if($control->getType() == ControlType::File) {
+                $control->setValue($request->getFile($name));
+            } else if($control->getType() == ControlType::Date) {
+                $control->setValue($control->getConverter()? $control->getConverter()->dbToObject($request->getParam($name)) : null);
+            } else {
+                $control->setValue(htmlspecialchars($request->getParam($name)));
+            }
+            $control->validate();
         }
+    }
+
+    public function fill(array $filling): void {
+        foreach($this->controls as $name => &$control) {
+            if($control->getType() == ControlType::File) {
+                $control->setValue($filling[$name]);
+            } else if($control->getType() == ControlType::Date) {
+                $control->setValue($control->getConverter()? $control->getConverter()->dbToObject($filling[$name]) : null);
+            } else {
+                $control->setValue(htmlspecialchars($filling[$name]));
+            }
+            $control->validate();
+        }
+    }
+
+    public function isValid(): bool {
+        return $this->isValid;
     }
 }

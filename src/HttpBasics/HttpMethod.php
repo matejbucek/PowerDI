@@ -1,9 +1,17 @@
 <?php
 namespace PowerDI\HttpBasics;
 
-abstract class HttpMethod
+enum HttpMethod: string
 {
-    public const GET = "GET";
-    public const POST = "POST";
+    case GET = "GET";
+    case POST = "POST";
+    case DELETE = "DELETE";
+    case UPDATE = "UPDATE";
+    case HEAD = "HEAD";
+    case PUT = "PUT";
+    case CONNECT = "CONNECT";
+    case OPTIONS = "OPTIONS";
+    case TRACE = "TRACE";
+    case PATCH = "PATCH";
 }
 

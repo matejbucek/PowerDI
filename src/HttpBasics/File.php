@@ -65,7 +65,7 @@ class File {
         $path = $to . $nameWithoutExtension . "." . $allowedExtensions[$this->fileType];
 
         $this->upload($path, $permissions);
-        return FileUploadStatus::ok($path);
+        return FileUploadStatus::ok($path, $nameWithoutExtension . "." . $allowedExtensions[$this->fileType]);
     }
 
     public function upload(string $to, int $permissions): void {

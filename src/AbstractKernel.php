@@ -92,7 +92,7 @@ abstract class AbstractKernel{
         }
     }
     
-    public function handle(HttpRequest $request): HttpResponse{
+    public function handle(HttpRequest $request): HttpResponse {
         $this->container->registerParam("app.request", $request);
         try{
             if($this->firewallConfig["firewall"]["status"] == "on"){
@@ -101,7 +101,7 @@ abstract class AbstractKernel{
                     throw new AccessForbiddenException();
             }
             return $this->routeRegistry->resolve($request);
-        }catch(\Exception $exception){
+        } catch(\Exception $exception) {
             $controller = $this->container->get($this->config["app"]["errors"]["name"]);
             $reflectionMethod = new \ReflectionMethod(get_class($controller), $this->config["app"]["errors"]["method"]);
             return $reflectionMethod->invoke($controller, $exception);

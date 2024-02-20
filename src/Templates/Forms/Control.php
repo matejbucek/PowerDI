@@ -2,20 +2,28 @@
 
 namespace PowerDI\Templates\Forms;
 
-class Control {
+use PowerDI\Database\Convertable;
+
+class Control implements \Stringable {
     private ControlType $type;
     private array $validators;
     private mixed $value;
+    private ?Convertable $converter;
 
     /**
      * @param ControlType $type
      * @param array $validators
      * @param mixed $value
      */
-    public function __construct(ControlType $type, array $validators, mixed $value = null) {
+    public function __construct(ControlType $type, array $validators, mixed $value = null, ?Convertable $converter = null) {
         $this->type = $type;
         $this->validators = $validators;
-        $this->value = $value;
+        if(!$value) {
+            $this->value = $this->type == ControlType::Text ? "" : null;
+        } else {
+            $this->value = $value;
+        }
+        $this->converter = $converter;
     }
 
     public function getType(): ControlType {
@@ -28,5 +36,29 @@ class Control {
 
     public function getValue(): mixed {
         return $this->value;
+    }
+
+    public function setValue(mixed $value) {
+        $this->value = $value;
+    }
+
+    public function getConverter(): ?Convertable {
+        return $this->converter;
+    }
+
+    public function validate(): void {
+        foreach($this->validators as &$validator) {
+            $validator->validate($this);
+        }
+    }
+
+    public function __toString(): string {
+        if($this->type == ControlType::Text){
+            return $this->value;
+        } else if($this->type == ControlType::Date) {
+            return $this->converter? $this->converter->objectToDB($this->value) : "";
+        } else {
+            return "";
+        }
     }
 }
