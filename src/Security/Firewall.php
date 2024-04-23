@@ -88,8 +88,8 @@ class Firewall {
             return TRUE;
         }
 
-        $requestUrl = array_filter(explode("/", RouteRegistry::prepareUrl($path)));
-        $entryUrl = array_filter(explode("/", RouteRegistry::prepareUrl($matcher)));
+        $requestUrl = array_values(array_filter(explode("/", RouteRegistry::prepareUrl($path))));
+        $entryUrl = array_values(array_filter(explode("/", RouteRegistry::prepareUrl($matcher))));
         $pathVariables = [];
 
         return RouteRegistry::pathMatches($entryUrl, $requestUrl, $pathVariables);

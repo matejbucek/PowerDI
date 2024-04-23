@@ -47,8 +47,9 @@ class RouteRegistry
                     return $entry;
                 }
             } else {
-                $entryUrl = explode("/", $this->prepareUrl($entry->getPath()));
-                $requestUrl = explode("/", $this->prepareUrl($request->getPath()));
+                $entryUrl = array_values(array_filter(explode("/", $this->prepareUrl($entry->getPath()))));
+                $requestUrl = array_values(array_filter(explode("/", $this->prepareUrl($request->getPath()))));
+
                 if(count($entryUrl) != count($requestUrl)) continue;
 
                 $pathVariables = [];
@@ -68,8 +69,11 @@ class RouteRegistry
         for ($i = 0; $i < count($entryUrl); $i++) {
             if(preg_match("/^\{\w*\}$/", $entryUrl[$i])) {
                 $pathVariables[substr($entryUrl[$i], 1, -1)] = $requestUrl[$i];
-            } else if(preg_match("/^\/\*\*$/", $entryUrl[$i])) {
+            } else if(preg_match("/^\*\*$/", $entryUrl[$i])) {
                 continue;
+            } else if(!isset($requestUrl[$i])){
+                $matches = false;
+                break;
             } else if($entryUrl[$i] != $requestUrl[$i]){
                 $matches = false;
                 break;
