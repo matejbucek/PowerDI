@@ -18,7 +18,7 @@ class Control implements \Stringable {
     public function __construct(ControlType $type, array $validators, mixed $value = null, ?Convertable $converter = null) {
         $this->type = $type;
         $this->validators = $validators;
-        if(!$value) {
+        if (!$value) {
             $this->value = $this->type == ControlType::Text ? "" : null;
         } else {
             $this->value = $value;
@@ -46,17 +46,23 @@ class Control implements \Stringable {
         return $this->converter;
     }
 
-    public function validate(): void {
-        foreach($this->validators as &$validator) {
-            $validator->validate($this);
+    public function validate(): bool {
+        $isValid = true;
+        foreach ($this->validators as &$validator) {
+            $isValid &= $validator->validate($this);
         }
+        return $isValid;
     }
 
     public function __toString(): string {
-        if($this->type == ControlType::Text){
+        if ($this->value == null) {
+            return "";
+        }
+
+        if ($this->type == ControlType::Text) {
             return $this->value;
-        } else if($this->type == ControlType::Date) {
-            return $this->converter? $this->converter->objectToDB($this->value) : "";
+        } else if ($this->type == ControlType::Date) {
+            return $this->converter ? $this->converter->objectToDB($this->value) : "";
         } else {
             return "";
         }

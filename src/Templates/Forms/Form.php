@@ -2,6 +2,7 @@
 
 namespace PowerDI\Templates\Forms;
 
+use Cassandra\Date;
 use PowerDI\Database\Convertable;
 use PowerDI\HttpBasics\HttpRequest;
 
@@ -14,7 +15,7 @@ class Form implements \ArrayAccess {
      */
     public function __construct(array $controls) {
         $this->controls = $controls;
-        $this->isValid = false;
+        $this->isValid = true;
     }
 
     public function getControls(): array {
@@ -46,7 +47,7 @@ class Form implements \ArrayAccess {
             } else {
                 $control->setValue(htmlspecialchars($request->getParam($name)));
             }
-            $control->validate();
+            $this->isValid &= $control->validate();
         }
     }
 
@@ -55,11 +56,15 @@ class Form implements \ArrayAccess {
             if($control->getType() == ControlType::File) {
                 $control->setValue($filling[$name]);
             } else if($control->getType() == ControlType::Date) {
-                $control->setValue($control->getConverter()? $control->getConverter()->dbToObject($filling[$name]) : null);
+                if($filling[$name] instanceof \DateTime) {
+                    $control->setValue($filling[$name]);
+                } else {
+                    $control->setValue($control->getConverter()? $control->getConverter()->dbToObject($filling[$name]) : null);
+                }
             } else {
                 $control->setValue(htmlspecialchars($filling[$name]));
             }
-            $control->validate();
+            $this->isValid &= $control->validate();
         }
     }
 
