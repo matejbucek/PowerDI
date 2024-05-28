@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "50fcaf88b12b5c10e55417f727886b15",
+    "content-hash": "e6b90daa73b114d26c7f177545d0ef37",
     "packages": [
         {
             "name": "latte/latte",
-            "version": "v3.0.13",
+            "version": "v3.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/latte.git",
-                "reference": "462444d669809528b6f6ce191b616d747c9b4bfc"
+                "reference": "0984953d961123075e95a9fa33ec4c4f4de266d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/latte/zipball/462444d669809528b6f6ce191b616d747c9b4bfc",
-                "reference": "462444d669809528b6f6ce191b616d747c9b4bfc",
+                "url": "https://api.github.com/repos/nette/latte/zipball/0984953d961123075e95a9fa33ec4c4f4de266d2",
+                "reference": "0984953d961123075e95a9fa33ec4c4f4de266d2",
                 "shasum": ""
             },
             "require": {
@@ -87,22 +87,22 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/latte/issues",
-                "source": "https://github.com/nette/latte/tree/v3.0.13"
+                "source": "https://github.com/nette/latte/tree/v3.0.16"
             },
-            "time": "2024-01-09T13:54:57+00:00"
+            "time": "2024-05-14T09:54:10+00:00"
         },
         {
             "name": "monolog/monolog",
-            "version": "3.5.0",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c915e2634718dbc8a4a15c61b0e62e7a44e14448"
+                "reference": "4b18b21a5527a3d5ffdac2fd35d3ab25a9597654"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c915e2634718dbc8a4a15c61b0e62e7a44e14448",
-                "reference": "c915e2634718dbc8a4a15c61b0e62e7a44e14448",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/4b18b21a5527a3d5ffdac2fd35d3ab25a9597654",
+                "reference": "4b18b21a5527a3d5ffdac2fd35d3ab25a9597654",
                 "shasum": ""
             },
             "require": {
@@ -125,7 +125,7 @@
                 "phpstan/phpstan": "^1.9",
                 "phpstan/phpstan-deprecation-rules": "^1.0",
                 "phpstan/phpstan-strict-rules": "^1.4",
-                "phpunit/phpunit": "^10.1",
+                "phpunit/phpunit": "^10.5.17",
                 "predis/predis": "^1.1 || ^2",
                 "ruflin/elastica": "^7",
                 "symfony/mailer": "^5.4 || ^6",
@@ -178,7 +178,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/3.5.0"
+                "source": "https://github.com/Seldaek/monolog/tree/3.6.0"
             },
             "funding": [
                 {
@@ -190,7 +190,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-27T15:32:31+00:00"
+            "time": "2024-04-12T21:02:21+00:00"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -334,9 +334,10 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.2",
+        "php": ">=8.3",
         "ext-yaml": "*",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-memcached": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"

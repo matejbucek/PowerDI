@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../NetworthTracker/.idea/NetworthTracker.iml" filepath="$PROJECT_DIR$/../NetworthTracker/.idea/NetworthTracker.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/SimpleFW.iml" filepath="$PROJECT_DIR$/.idea/SimpleFW.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PowerDI.iml" filepath="$PROJECT_DIR$/.idea/PowerDI.iml" />
     </modules>
   </component>
 </project>
