@@ -22,7 +22,8 @@ abstract class AbstractController{
         return new HttpResponse($data);
     }
     
-    protected function responseWithJson($object){
+    protected function responseWithJson(mixed $object, int $status = 200): HttpResponse{
+        http_response_code($status);
         return new HttpResponse(json_encode($object));
     }
     

@@ -77,6 +77,10 @@ class Container {
         return $context;
     }
 
+    public function setParameter(string $id, $value) {
+        $this->parameters[$id] = $value;
+    }
+
     private function createService($name) {
         $entry = &$this->services[$name];
 

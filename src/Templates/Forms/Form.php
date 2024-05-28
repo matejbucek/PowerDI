@@ -39,11 +39,11 @@ class Form implements \ArrayAccess {
     }
 
     public function fillFromRequest(HttpRequest $request): void {
-        foreach($this->controls as $name => &$control) {
-            if($control->getType() == ControlType::File) {
+        foreach ($this->controls as $name => &$control) {
+            if ($control->getType() == ControlType::File) {
                 $control->setValue($request->getFile($name));
-            } else if($control->getType() == ControlType::Date) {
-                $control->setValue($control->getConverter()? $control->getConverter()->dbToObject($request->getParam($name)) : null);
+            } else if ($control->getType() == ControlType::Date) {
+                $control->setValue($control->getConverter() ? $control->getConverter()->dbToObject($request->getParam($name)) : null);
             } else {
                 $control->setValue(htmlspecialchars($request->getParam($name)));
             }
@@ -52,14 +52,16 @@ class Form implements \ArrayAccess {
     }
 
     public function fill(array $filling): void {
-        foreach($this->controls as $name => &$control) {
-            if($control->getType() == ControlType::File) {
+        foreach ($this->controls as $name => &$control) {
+            if (!array_key_exists($name, $filling)) {
+                $control->setValue(null);
+            } else if ($control->getType() == ControlType::File) {
                 $control->setValue($filling[$name]);
-            } else if($control->getType() == ControlType::Date) {
-                if($filling[$name] instanceof \DateTime) {
+            } else if ($control->getType() == ControlType::Date) {
+                if ($filling[$name] instanceof \DateTime) {
                     $control->setValue($filling[$name]);
                 } else {
-                    $control->setValue($control->getConverter()? $control->getConverter()->dbToObject($filling[$name]) : null);
+                    $control->setValue($control->getConverter() ? $control->getConverter()->dbToObject($filling[$name]) : null);
                 }
             } else {
                 $control->setValue(htmlspecialchars($filling[$name]));
@@ -70,5 +72,14 @@ class Form implements \ArrayAccess {
 
     public function isValid(): bool {
         return $this->isValid;
+    }
+
+    public function asJson(): string {
+        $json = [];
+
+        foreach ($this->controls as $name => $control) {
+            $json["controls"][$name] = $control->asJson();
+        }
+        return json_encode($json);
     }
 }

@@ -9,7 +9,7 @@ class HttpRequest {
     private ?array $headers;
     private ?array $files;
 
-    public function __construct($path, string $method, $params = NULL, array $headers = null, array $files){
+    public function __construct(?string $path, ?string $method, mixed $params = NULL, ?array $headers = null, ?array $files){
         $this->path = $path;
         $this->method = HttpMethod::tryFrom($method);
         $this->params = $params;
@@ -63,6 +63,10 @@ class HttpRequest {
 
     public function getFiles(): array {
         return $this->files;
+    }
+
+    public function getJsonBody() {
+        return json_decode(file_get_contents('php://input'), true);
     }
 }
 

@@ -104,7 +104,7 @@ abstract class AbstractKernel{
         } catch(\Exception $exception) {
             $controller = $this->container->get($this->config["app"]["errors"]["name"]);
             $reflectionMethod = new \ReflectionMethod(get_class($controller), $this->config["app"]["errors"]["method"]);
-            return $reflectionMethod->invoke($controller, $exception);
+            return $reflectionMethod->invoke($controller, $exception, $request);
         }
     }
 

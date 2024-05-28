@@ -67,4 +67,15 @@ class Control implements \Stringable {
             return "";
         }
     }
+
+    public function asJson() {
+        $validators = [];
+        foreach ($this->validators as $validator) {
+            $validators[] = $validator->asJson();
+        }
+        return json_encode([
+            "type" => $this->type,
+            "validators" => $validators
+        ]);
+    }
 }
