@@ -2,7 +2,7 @@
 
 namespace PowerDI\Cache;
 
-class MemcachedService implements Cache {
+class MemcachedService implements CacheService {
     private \Memcached $memcached;
 
     public function __construct(array $config) {
@@ -23,7 +23,25 @@ class MemcachedService implements Cache {
         return $this->memcached->get($key);
     }
 
-    public function set(string $key, mixed $value, int $ttl): void {
+    public function set(string $key, mixed $value, int $ttl = 0): void {
         $this->memcached->set($key, $value, $ttl);
+    }
+
+    public function delete(string|array $keys): void {
+        if(is_array($keys)) {
+            foreach ($keys as $key) {
+                $this->memcached->delete($key);
+            }
+        } else {
+            $this->memcached->delete($keys);
+        }
+    }
+
+    public function clear(): void {
+        $this->memcached->flush();
+    }
+
+    public function __destruct() {
+        $this->memcached->quit();
     }
 }

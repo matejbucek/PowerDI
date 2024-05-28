@@ -6,13 +6,16 @@ use PowerDI\HttpBasics\HttpMethod;
 #[\Attribute]
 class Route
 {
-    private $path;
-    private $methods;
-    private $name;
+    private string $path;
+    private array $methods;
+    private ?array $cacheConfig;
+    private ?string $name;
+
     
-    public function __construct($path, $methods = [HttpMethod::GET, HttpMethod::POST], $name = NULL){
+    public function __construct(string $path, array $methods = [HttpMethod::GET, HttpMethod::POST], ?array $cacheConfig = null, ?string $name = null){
         $this->path = $path;
         $this->methods = $methods;
+        $this->cacheConfig = $cacheConfig;
         $this->name = $name;
     }
     
@@ -22,6 +25,10 @@ class Route
     
     public function getMethods(){
         return $this->methods;
+    }
+
+    public function getCacheConfig(){
+        return $this->cacheConfig;
     }
     
     public function getName(){

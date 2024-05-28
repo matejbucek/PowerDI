@@ -3,9 +3,9 @@ namespace PowerDI\Templates;
 
 abstract class AbstractTemplater
 {
-    private $templatePath;
+    private array $templatePath;
     
-    public function __construct($templatePath){
+    public function __construct(array $templatePath){
         $this->templatePath = $templatePath;
         $this->init("");
     }
