@@ -7,12 +7,17 @@ class MemcachedService implements Cache {
 
     public function __construct(array $config) {
         $this->memcached = new \Memcached();
-        if(isset($config['servers'])) {
-            $this->memcached->addServers($config['servers']);
+        if (isset($config['servers'])) {
+            foreach ($config['servers'] as $server) {
+                if (!isset($server['host']) || !isset($server['port'])) {
+                    throw new \Exception('Memcached server configuration is invalid');
+                }
+                $this->memcached->addServer($server['host'], $server['port']);
+            }
         }
 
-        if(isset($config['sasl'])) {
-            if(isset($config['sasl']['username']) && isset($config['sasl']['password'])) {
+        if (isset($config['sasl'])) {
+            if (isset($config['sasl']['username']) && isset($config['sasl']['password'])) {
                 $this->memcached->setOption(\Memcached::OPT_BINARY_PROTOCOL, true);
                 $this->memcached->setSaslAuthData($config['sasl']['username'], $config['sasl']['password']);
             }
