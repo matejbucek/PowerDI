@@ -18,12 +18,13 @@ class Control implements \Stringable {
     public function __construct(ControlType $type, array $validators, mixed $value = null, ?Convertable $converter = null) {
         $this->type = $type;
         $this->validators = $validators;
+        $this->converter = $converter;
+
         if (!$value) {
             $this->value = $this->type == ControlType::Text ? "" : null;
         } else {
             $this->value = $value;
         }
-        $this->converter = $converter;
     }
 
     public function getType(): ControlType {
@@ -63,6 +64,8 @@ class Control implements \Stringable {
             return $this->value;
         } else if ($this->type == ControlType::Date) {
             return $this->converter ? $this->converter->objectToDB($this->value) : "";
+        } else if ($this->type == ControlType::Number) {
+            return $this->value;
         } else {
             return "";
         }

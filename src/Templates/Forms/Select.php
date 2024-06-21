@@ -2,6 +2,8 @@
 
 namespace PowerDI\Templates\Forms;
 
+use PowerDI\Database\Convertable;
+
 class Select extends Control {
     private array $options;
 

@@ -2,8 +2,6 @@
 
 namespace PowerDI\Templates\Forms;
 
-use Cassandra\Date;
-use PowerDI\Database\Convertable;
 use PowerDI\HttpBasics\HttpRequest;
 
 class Form implements \ArrayAccess {
@@ -63,6 +61,8 @@ class Form implements \ArrayAccess {
                 } else {
                     $control->setValue($control->getConverter() ? $control->getConverter()->dbToObject($filling[$name]) : null);
                 }
+            } else if($control->getConverter() != null) {
+                $control->setValue($control->getConverter()->dbToObject($filling[$name]));
             } else {
                 $control->setValue(htmlspecialchars($filling[$name]));
             }
