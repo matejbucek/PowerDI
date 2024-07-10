@@ -6,7 +6,7 @@
   },
   "name": "matejbucek/powerdi",
   "require": {
-    "php": ">=8.3",
+    "php": ">=8.2",
     "latte/latte": "@stable",
     "monolog/monolog": "@stable",
     "phpmailer/phpmailer": "^6.9.1",
