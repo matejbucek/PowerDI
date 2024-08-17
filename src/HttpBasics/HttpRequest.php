@@ -84,7 +84,7 @@ class HttpRequest {
             if($class->hasProperty($param)) {
                 $property = $class->getProperty($param);
                 try {
-                    $property->setValue($value);
+                    $property->setValue($object, $value);
                 } catch (\Exception $exception) {
                     throw new CoreException("The parameter value has unacceptable type!");
                 }
