@@ -1,6 +1,8 @@
 <?php
 namespace PowerDI\HttpBasics;
 
+use PowerDI\Core\CoreException;
+
 class HttpRequest {
     private $path;
     private HttpMethod $method;
@@ -9,7 +11,7 @@ class HttpRequest {
     private ?array $headers;
     private ?array $files;
 
-    public function __construct(?string $path, ?string $method, mixed $params = NULL, ?array $headers = null, ?array $files){
+    public function __construct(?string $path, ?string $method, mixed $params = null, ?array $headers = null, ?array $files){
         $this->path = $path;
         $this->method = HttpMethod::tryFrom($method);
         $this->params = $params;
@@ -67,6 +69,29 @@ class HttpRequest {
 
     public function getJsonBody() {
         return json_decode(file_get_contents('php://input'), true);
+    }
+
+    public function paramsToObject(string $className) {
+        $class = new \ReflectionClass($className);
+
+        try {
+            $object = $class->newInstance();
+        } catch (\Exception $exception) {
+            throw new CoreException("When mapping parameters to an object, the object should have a constructor that accepts no parameters too!");
+        }
+
+        foreach ($this->params as $param => $value) {
+            if($class->hasProperty($param)) {
+                $property = $class->getProperty($param);
+                try {
+                    $property->setValue($value);
+                } catch (\Exception $exception) {
+                    throw new CoreException("The parameter value has unacceptable type!");
+                }
+            }
+        }
+
+        return $object;
     }
 }
 
