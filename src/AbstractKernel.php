@@ -25,13 +25,17 @@ abstract class AbstractKernel {
     protected array $routes;
     protected RouteRegistry $routeRegistry;
     protected array $firewallConfig;
+    protected string $envFilePath;
+    protected array $envVariables;
 
     public function __construct() {
         $this->setAppBase();
         $this->configure();
+        $this->loadEnvVariables();
+        $this->emplaceEnvVariables();
         $this->container = new Container($this->dependency["services"], $this->dependency["parameters"]);
         $cacheService = null;
-        if(isset($this->config["app"]["cache"]["service"]) && $this->container->has($this->config["app"]["cache"]["service"])) {
+        if (isset($this->config["app"]["cache"]["service"]) && $this->container->has($this->config["app"]["cache"]["service"])) {
             $cacheService = $this->container->get($this->config["app"]["cache"]["service"]);
         }
         $this->routeRegistry = new RouteRegistry($cacheService);
@@ -118,5 +122,41 @@ abstract class AbstractKernel {
     public function schedule(): void {
         $scheduler = $this->container->get("Scheduler");
         $scheduler->schedule();
+    }
+
+    private function loadEnvVariables(): void {
+        $variables = [];
+        $envFile = file($this->envFilePath);
+        if ($envFile) {
+            foreach ($envFile as $line) {
+                [$key, $value] = explode("=", $line, 2);
+                $key = trim($key);
+                $value = trim($value);
+
+                $variables[$key] = $value;
+            }
+        }
+        $this->envVariables = $variables;
+    }
+
+    private function emplaceEnvVariables(): void {
+        $this->emplaceEnvVariable($this->dependency["parameters"]);
+    }
+
+    private function emplaceEnvVariable(&$node): void {
+        foreach ($node as $key => &$value) {
+            if (is_array($value)) {
+                $this->emplaceEnvVariable($value);
+            } elseif (is_string($value)) {
+                $matches = [];
+                if(preg_match_all("/\{[a-zA-Z_]+[a-zA-Z0-9_]*}/", $value, $matches)) {
+                    foreach($matches[0] as $match) {
+                        $variable = preg_replace("/[\{\}]/", "", $match);
+                        $variableValue = array_key_exists($variable, $this->envVariables) ? $this->envVariables[$variable] : "";
+                        $value = preg_replace("/\{$variable\}/", $variableValue, $value);
+                    }
+                }
+            }
+        }
     }
 }
