@@ -24,7 +24,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Installation: installation.md
+  - PowerDI CLI: cli.md
   - Getting Started: getting-started.md
   - Features:
       - features/Cache.md

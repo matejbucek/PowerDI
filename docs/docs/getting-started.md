@@ -7,7 +7,7 @@ This is a guide to help you get started with PowerDI, implementing your first pr
 ## Create a new project
 
 ```bash
-powerdi new project my-project
+powerdi new my-project
 ```
 
 This command will create a new project with the name `my-project`,

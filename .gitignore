@@ -201,3 +201,5 @@ fabric.properties
 .idea/**
 docs/api/**
 .phpdoc/**
+
+docs/site/**
