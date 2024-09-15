@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#the-cli-tool-installation" class="md-skip">
+        <a href="#powerdi-cli" class="md-skip">
           Skip to content
         </a>
       
@@ -228,6 +228,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -237,6 +248,94 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a new project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-development-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the development server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-the-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build the project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Help
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -492,6 +591,83 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create a new project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-development-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the development server
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-the-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build the project
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Help
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -505,8 +681,36 @@
                   
 
 
-<h1 id="the-cli-tool-installation">The CLI tool installation</h1>
-<p>To install the CLI tool, you can use the following command:</p>
+<h1 id="powerdi-cli">PowerDI CLI</h1>
+<p>We now have our own CLI tool, which will help you to create a new project and generate new components, services etc. in
+the near future.</p>
+<p>Note that the CLI commands might change in the future!</p>
+<h2 id="installation">Installation</h2>
+<p>To install the CLI tool, visit the <a href="https://github.com/matejbucek/PowerDI-CLI">repository</a> and follow the instructions.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="create-a-new-project">Create a new project</h3>
+<p>To create a new project, run the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>powerdi<span class="w"> </span>new<span class="w"> </span>my-project
+</span></code></pre></div>
+<p>This will create a new project in the <code>my-project</code> directory.</p>
+<h3 id="run-the-development-server">Run the development server</h3>
+<p>To run the development server, navigate to the project directory and run the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>powerdi<span class="w"> </span>serve
+</span></code></pre></div>
+<h3 id="build-the-project">Build the project</h3>
+<p>To build the project, navigate to the project directory and run the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>powerdi<span class="w"> </span>build
+</span></code></pre></div>
+<p>This will create a <code>build</code> directory with the archived project.</p>
+<h3 id="configuration">Configuration</h3>
+<p>The CLI tool uses a configuration file, which is located in the project directory. The configuration file is named
+<code>powerdi.yaml</code>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>powerdi<span class="w"> </span>config
+</span></code></pre></div>
+<h3 id="help">Help</h3>
+<p>To get help, run the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>powerdi<span class="w"> </span><span class="nb">help</span>
+</span></code></pre></div>
 
 
 
