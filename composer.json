@@ -12,7 +12,8 @@
     "phpmailer/phpmailer": "^6.9.1",
     "ext-yaml": "*",
     "ext-pdo": "*",
-    "ext-memcached": "*"
+    "ext-memcached": "*",
+    "ext-zip": "*"
   },
   "description": "Simple framework"
 }

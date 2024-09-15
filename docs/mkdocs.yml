@@ -1,3 +1,36 @@
 site_name: PowerDI
 theme:
   name: material
+  palette:
+    primary: green
+  features:
+    - content.code.copy
+    - content.code.select
+    - navigation.top
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Getting Started: getting-started.md
+  - Features:
+      - features/Cache.md
+      - features/Controllers.md
+      - features/Database.md
+      - features/Injection.md
+      - features/Security.md
+  - Development:
+      - Where to start: development/index.md

@@ -126,6 +126,10 @@ abstract class AbstractKernel {
 
     private function loadEnvVariables(): void {
         $variables = [];
+        if (!file_exists($this->envFilePath)) {
+            return;
+        }
+
         $envFile = file($this->envFilePath);
         if ($envFile) {
             foreach ($envFile as $line) {
@@ -149,8 +153,8 @@ abstract class AbstractKernel {
                 $this->emplaceEnvVariable($value);
             } elseif (is_string($value)) {
                 $matches = [];
-                if(preg_match_all("/\{[a-zA-Z_]+[a-zA-Z0-9_]*}/", $value, $matches)) {
-                    foreach($matches[0] as $match) {
+                if (preg_match_all("/\{[a-zA-Z_]+[a-zA-Z0-9_]*}/", $value, $matches)) {
+                    foreach ($matches[0] as $match) {
                         $variable = preg_replace("/[\{\}]/", "", $match);
                         $variableValue = array_key_exists($variable, $this->envVariables) ? $this->envVariables[$variable] : "";
                         $value = preg_replace("/\{$variable\}/", $variableValue, $value);
