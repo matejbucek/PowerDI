@@ -1,116 +1,52 @@
-# PowerDI
-This is really simple PHP 8 framework. Thats where the name comes from.
 
----
+# PowerDI 🚀
 
-### Simple example
+**PowerDI** is a lightweight PHP 8 framework that emphasizes simplicity and flexibility. Its name reflects a strong focus on **Dependency Injection** and a modular architecture, making it an ideal choice for modern web applications.
 
-You can find a simple example of use [here](https://github.com/matejbucek/SimpleApp).
+## 🌟 Features
 
----
+- **🔌 Dependency Injection**: Leverage PHP 8 attributes to efficiently manage services and controllers.
+- **🏗️ MVC Architecture with Latte**: Streamline your views and controllers while adhering to the MVC design pattern.
+- **🛡️ Built-in Firewall**: Secure your application effortlessly with a configurable firewall.
+- **💾 Database ORM**: Easily connect to your database using repositories.
+- **📝 Logging**: Monitor your application's activities seamlessly.
+- **📊 Storage Support**: Manage your application’s data with ease.
 
-### About
+## 🔍 Quick Start
 
-This framework supports: 
-1. Dependency Injection
-2. MVC with Latte
-3. Firewall
-4. Simple DB Connector
-5. Logging
-6. Storage
+Explore our [WIKI](https://matejbucek.github.io/PowerDI/) for guides and detailed insights into the framework's inner workings.
 
-### TODO
+## 📚 Getting Started
 
-- Log in more places
-- Reimplement Routing
-- Reimplement Firewall
+### 🚀 Starting a New Project
 
----
+To initiate a new project, install the [PowerDI CLI](https://github.com/matejbucek/PowerDI-CLI):
 
-### Functionalities
-
-1. Dependency Injection
-
-We make use of PHP 8 Attributes, so that is one way to register Service or Controller.
-
-```php
-#[Service("MyService")]
-class MyService{
-  ...
-}
-
-#[Controller("MyController")]
-class MyController extends AbstractController {
-  ...
-}
-
+```bash
+powerdi new my-project
 ```
 
-You can use the `dependency.yaml` file to define Services and Parameters. See more in WIKI.
+## 🛠️ Development
 
-Note: It is not possible to register Controller using this file yet.
+If you would like to contribute to the development of this framework, please refer to our [development guide](https://matejbucek.github.io/PowerDI/development/).
 
-You can also use Attribute to inject Dependency or Parameter to your Service:
+## ✅ TODOs
 
-```php
-#[Autowired("@MyService")]
-private MyService $service;
+- 📜 Support additional templating engines
+- 🔌 Implement plugin support
+- 📁 Utilize a `route.yaml` configuration file
+- ⚠️ Enhance error checking for verbosity
 
-#[Autowired("%my.property%")]
-private string $property;
-```
+## 👤 Author
 
-2. MVC with Latte
+- **Matěj Bucek** - [GitHub](https://github.com/matejbucek)
 
-In your Controller, you can use Attribute `Route` to define a Route mapping.
-
-```php
-#[Route("/my/route", methods: ["GET"])]
-public function getMyRoute(HttpRequest $request): HttpResponse{
-  ...
-  return $this->render("template.latte", ["myParam" => "Hello"]);
-  //return $this->response("<h1>Hello, world!</h1>");
-  //return $this->responseWithJson($myObject);
-  //return $this->redirect("/");
-}
-```
-`AbstractController` automatically resolves path to your template based on Configuration and your specified name.
-
-3. Firewall
-
-Now, you can secure your app using our `Firewall`. You can configure it in `firewall.yaml` file.
-
-The login mechanism works thorugh the `UserDataBinder` and `Principal` classes.
-
-In `firewall.yaml`, you have to specify name of your `UserDataBinder` implementation. You can e. g. use our 'SessionContext' to store the `Principal`.
-
-4. Simple DB Connector
-
-In the `dependency.yaml` file you can specify Parameters and your EntityManager instance:
-
-```yaml
-parameters:
-  db:
-    default:
-      dsn: "mysql:host=localhost;dbname=mydb"
-      username: "MyDBUser"
-      password: "MySecurePassword123?"
-services:
-  EntityManager:
-    class: PowerDI\Database\EntityManager
-    arguments: ["%db.default.dsn%", "%db.default.username%", "%db.default.password%"]
-```
-
-The `EntityManager` is just a fancy name for simple Wrapper class, that contains the `PDO`.
-
----
-### Authors:
-  * Matěj Bucek
----
+## 📝 License
 
 MIT License
 
-Copyright (c) 2021 Matěj Bucek
+```plaintext
+Copyright (c) 2024 Matěj Bucek
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -119,9 +55,6 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -129,3 +62,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```
